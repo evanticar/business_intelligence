@@ -1,0 +1,11 @@
+"0","jobs |>
+  dplyr::filter(category == 'fulltime')|>
+  dplyr::group_by(location_state)|>
+  dplyr::summarise(
+    postings = dplyr::n(), # Counting the number of rows per category
+    remote_share = mean(remote) |> round(3)
+  )|>
+  dplyr::filter(postings >= 50)|>
+  dplyr::arrange(dplyr::desc(remote_share))
+"
+"0",""

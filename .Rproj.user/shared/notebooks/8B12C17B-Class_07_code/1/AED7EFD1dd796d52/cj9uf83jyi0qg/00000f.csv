@@ -1,0 +1,5 @@
+"0","con = DBI::dbConnect(RSQLite::SQLite(), ""M:/ISA401/business_intelligence/Data/midwest_airbnb.db"")"
+"0","listings = DBI::dbReadTable(con, ""listings"") |>"
+"0","  tibble::as_tibble()"
+"2","Error: no such table: listings
+"
