@@ -1,0 +1,11 @@
+"0",""
+"0","occupation = readxl::read_excel("
+"0","  path = ""M:/ISA401/business_intelligence/Data/occupation.xlsx"", sheet = ""Table 1.4"", skip = 1"
+"0","  )"
+"0",""
+"0","# optional: clean the bottom 3 rows"
+"0",""
+"0","occupation = occupation[-c(32,33,34),] # Delete 3 specifc rowss, keep all cols (since after , is empty)"
+"2","Error in .rs.exprMutatesPackageLibrary(part) : 
+  argument ""part"" is missing, with no default
+"

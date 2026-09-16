@@ -1,0 +1,57 @@
+---
+title: "Class05"
+date: "2026-09-09"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    code_folding: show
+    code_download: true
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## game 1: find your seat
+
+```{r game01}
+campus = jsonlite::fromJSON(
+  "https://isa401-find-your-seat.vercel.app/campus.json")
+
+dplyr::glimpse(campus)
+
+fsb = campus[['Farmer']]
+fsb$code
+fsb$floors[["2"]]
+```
+
+
+```{r read_excel}
+
+occupation = readxl::read_excel(
+  path = "M:/ISA401/business_intelligence/Data/occupation.xlsx", sheet = "Table 1.4", skip = 1
+  )
+
+# optional: clean the bottom 3 rows
+
+occupation = occupation[-c(32,33,34),] # Delete 3 specifc rowss, keep all cols (since after , is empty)
+```
+
+```{r}
+stage1 = readr::read_csv("M:/ISA401/business_intelligence/Data/stage1.csv")
+dplyr::glimpse(stage1)
+
+```
+
+```{r}
+log = jsonlite::fromJSON("https://isa401-import-heist.vercel.app/api/stage2?key=smithj31&seat=R1-7&s=A")
+dplyr::glimpse(log)
+```
+
+```{r}
+jsonlite::fromJSON("https://isa401-import-heist.vercel.app/api/finish?code=6&seat=R1-7&s=A")
+```
+
