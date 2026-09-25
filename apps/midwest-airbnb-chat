@@ -1,0 +1,13 @@
+business_intelligence/
+  apps/
+    midwest_airbnb_chat/
+      .gitattributes
+      .gitignore
+      app.R
+      Dockerfile
+      README.md
+      data/
+        midwest_airbnb.db
+        data_desc.md
+        extra_instructions.md
+        
