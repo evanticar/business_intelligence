@@ -1,0 +1,36 @@
+---
+title: "robots"
+output: html_document
+date: "2026-09-28"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r robotstxt}
+# robots txt
+
+robotstxt::paths_allowed(paths = "/courses-instruction/isa/", domain = "bulletin.miamioh.edu", bot = "*")
+
+robotstxt::paths_allowed(paths = "/wiki/Miami_RedHawks_football", domain = "en.wikipedia.org", bot = "*")
+
+robotstxt::paths_allowed(paths = "/jobs/", domain = "www.linkedin.com", bot = "*")
+
+robotstxt::paths_allowed(paths = "/jobs and /viewjob", domain = "www.indeed.com", bot = "*")
+```
+
+## rvest demo
+
+```{r}
+isa_page_in_r = rvest::read_html("https://bulletin.miamioh.edu/courses-instruction/isa/")
+
+# if all titles look that same on the page it means that they have the same class/tag which allows you to extract them
+
+isa_page_in_r |>
+  rvest::html_elements(
+    "#sc_sccoursedescs > div > p.courseblocktitle > strong"
+  ) |>
+  rvest::html_text2()
+```
+
