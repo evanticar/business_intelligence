@@ -1,0 +1,67 @@
+---
+title: "Class7Code"
+output: html_document
+date: "2026-09-16"
+  htmldocument:
+    toc: TRUE
+    toc_float: TRUE
+    number_sections: TRUE
+    code_download: TRUE
+    code_folding: show
+    
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r demo}
+con = DBI::dbConnect(RSQLite::SQLite(), "M:/ISA401/business_intelligence/Data/scout.db")
+postings = DBI::dbReadTable(con, "scout_postings") |> tibble::as_tibble()
+DBI::dbDisconnect(con)
+
+jobs = postings |>
+  dplyr::select(company, title, location_state, remote, category, posted_at, last_seen_at) |>
+  dplyr::mutate(dplyr::across(dplyr::ends_with("_at"), as.Date),
+                days_open = as.numeric(last_seen_at - posted_at))
+
+#For Q1 to answer it we need the following
+# Number of jobs per category
+# fraction of theos jobs that are remote friendly
+
+jobs |>
+  dplyr::group_by(category)|>
+  dplyr::summarise(
+    postings = dplyr::n(), # Counting the number of rows per category
+    remote_share = mean(remote) |> round(3)
+  )
+
+
+#For Q2 among the full time jobs, which states have the highest remote share?
+
+jobs |>
+  dplyr::filter(category == 'fulltime')|>
+  dplyr::group_by(location_state)|>
+  dplyr::summarise(
+    postings = dplyr::n(), # Counting the number of rows per category
+    remote_share = mean(remote) |> round(3)
+  )|>
+  dplyr::filter(postings >= 50)|>
+  dplyr::arrange(dplyr::desc(remote_share))|>
+  head(3)
+
+```
+
+```{r}
+con = DBI::dbConnect(RSQLite::SQLite(), "M:/ISA401/business_intelligence/Data/midwest_airbnb.db")
+listings = DBI::dbReadTable(con, "listings") |>
+  tibble::as_tibble()
+DBI::dbDisconnect(con)
+dplyr::glimpse(listings)
+
+
+
+
+```
+
