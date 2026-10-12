@@ -1,0 +1,6 @@
+"0","d = read.csv('https://raw.githubusercontent.com/fmegahed/isa401/main/data/penguin_captures.csv')"
+"0",""
+"0",""
+"0","print(count.fields(d$specie))"
+"2","Error in file(file) : invalid 'description' argument
+"

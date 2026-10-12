@@ -1,0 +1,17 @@
+---
+title: "Untitled"
+output: html_document
+date: "2026-10-12"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+d = read.csv('https://raw.githubusercontent.com/fmegahed/isa401/main/data/penguin_captures.csv')
+```{r}
+d = read.csv('https://raw.githubusercontent.com/fmegahed/isa401/main/data/penguin_captures.csv')
+
+
+print(count.fields(d$specie))
+```
